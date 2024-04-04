@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Table 01</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+	<style>
+		#logout-btn a {
+			text-decoration: none;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			border: none;
+			background-color: #f1f1f1;
+			cursor: pointer;
+			border-radius: 5px;
+			padding: .5rem 1rem;
+		}
+
+		.atag {
+			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+	<section class="ftco-section">
+		<span id="logout-btn">
+			<a href="{{url_for('main_route')}}">Logout</a>
+		</span>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Customer Request Table</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table">
+							<thead class="thead-primary">
+								<tr>
+									<th>#</th>
+									<th>Service Type</th>
+									<th>Language</th>
+									<th>Timing</th>
+									<th>Date</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for x in tasks %}
+								<tr>
+									<th scope="row">{{x["id"]}}</th>
+									<th>{{x["service_type"]}}</th>
+									<th>{{x['language']}}</th>
+									<th>{{x["service_time"]}}</th>
+									<th>{{x["service_data"]}}</th>
+									<th><a href="{{url_for('accept_service_request', empId=empId,serviceId=x['id'], customerId=x['customer_id'] )}}" class="atag"> Accept</a></th>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+	<script src="{{url_for('static',filename='js/popper.js')}}"></script>
+	<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+</body>
+
+</html>
